@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @youtube_song_info.title %>
+</p>
+
+<p>
+  <strong>Youtube:</strong>
+  <%= @youtube_song_info.youtube_id %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @youtube_song_info.time %>
+</p>
+
+<p>
+  <strong>Attr:</strong>
+  <%= @youtube_song_info.attr %>
+</p>
+
+<%= link_to 'Edit', edit_youtube_song_info_path(@youtube_song_info) %> |
+<%= link_to 'Back', youtube_song_infos_path %>

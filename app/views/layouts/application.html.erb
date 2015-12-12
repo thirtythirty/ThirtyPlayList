@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ThirtyPlayList</title>
+	<meta name="viewport" content="width=device-width,minimal-ui">
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="header">
+	<ul>
+		<li><a href="/">ThirtyPlayList</a></li>
+		<li><a href="/detect/2">play</a></li>
+	</ul>
+</div>
+
+
+<div class="container">
+	<%= yield %>
+</div>
+
+</body>
+</html>

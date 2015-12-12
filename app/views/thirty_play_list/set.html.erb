@@ -1,0 +1,42 @@
+<!--  youtubeのiframeが表示される場所    -->
+<div id="player"></div>
+
+<!-- railsの変数をjavascriptに渡すための処理 -->
+<%= javascript_tag do %>
+	// 曲リストをjavascriptで使えるようにする
+	window.song_list = '<%= @video_id %>';
+
+<% end %>
+
+<script>
+// youtubeのiframeを使うためのテンプレ
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+		height: '390',
+		width: '640',
+		videoId: window.song_list,
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+		}
+	});
+}
+
+function onPlayerReady(event) { // 再生する準備ができたら呼ばれる
+	var time = player.getDuration(); // 曲の再生時間を取得
+	var url = "/set/" + window.song_list + "/" +time;
+  location.href=url; // 再生時間をurlパラメータにしてリダイレクト	
+}
+function onPlayerStateChange(event) {
+	// プレーヤの状態が変わったら発火
+}
+function stopVideo() {
+	player.stopVideo();
+}
+</script>
